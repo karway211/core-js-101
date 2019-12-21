@@ -349,8 +349,30 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const arrString = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  const array = [];
+  arrString.map((elem, item) => {
+    arr.map((el) => {
+      if (el === elem) {
+        array.push(item);
+      }
+      return array;
+    });
+    return array;
+  });
+  const result = [];
+  array.map((el) => {
+    arrString.map((elem, item) => {
+      if (+el === item) {
+        result.push(elem);
+      }
+      return result;
+    });
+    return result;
+  });
+  return result;
+  // throw new Error('Not implemented');
 }
 
 /**

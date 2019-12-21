@@ -27,8 +27,11 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  const fizz = num % 3 === 0;
+  const buzz = num % 5 === 0;
+  return fizz ? buzz ? 'FizzBuzz' : 'Fizz' : buzz ? 'Buzz' : num;/* eslint no-nested-ternary: "off" */
+  // throw new Error('Not implemented');
 }
 
 
@@ -43,8 +46,9 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  return n ? n * getFactorial(n - 1) : 1;
+  // throw new Error('Not implemented');
 }
 
 
@@ -60,8 +64,9 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  return ((n2 - n1) + 1) * (n1 + n2) / 2;/* eslint no-mixed-operators: "off" */
+  // throw new Error('Not implemented');
 }
 
 
@@ -80,8 +85,9 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return (a + b > c && b + c > a && c + a > b);
+  // throw new Error('Not implemented');
 }
 
 
@@ -164,8 +170,19 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const set = new Set();
+  const finalSet = new Set();
+  str.split('').forEach((char) => {
+    if (set.has(char)) finalSet.delete(char);
+    else {
+      set.add(char);
+      finalSet.add(char);
+    }
+  });
+  const iter = finalSet.values();
+  return iter.next().value;
+  // throw new Error('Not implemented');
 }
 
 
@@ -208,8 +225,9 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
+  // throw new Error('Not implemented');
 }
 
 
@@ -225,8 +243,9 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return parseFloat(num.toString().split('').reverse().join('')) * Math.sign(num);
+  // throw new Error('Not implemented');
 }
 
 
