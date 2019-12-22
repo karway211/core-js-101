@@ -296,8 +296,9 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  return (num - 1) % 9 + 1;
+  // throw new Error('Not implemented');
 }
 
 
@@ -322,8 +323,10 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const re = /\(\)|\{\}|\[\]|<>/;
+  return re.test(str) ? isBracketsBalanced(str.replace(re, '')) : str === '';
+  // throw new Error('Not implemented');
 }
 
 
@@ -347,8 +350,10 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  const base = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/';
+  return n === 0 ? false : (num >= n ? toNaryString(Math.floor(num / n), n) : '') + base[num % n];
+  // throw new Error('Not implemented');
 }
 
 
@@ -364,8 +369,18 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  let str = '';
+  const split = pathes.map((v) => v.split('/'));
+  for (let i = 0; i < split[0].length; i++) {
+    if (split.every((v) => v[i] === split[0][i])) {
+      str = `${str}${split[0][i]}/`;
+    } else {
+      break;
+    }
+  }
+  return str;
+  // throw new Error('Not implemented');
 }
 
 
@@ -387,8 +402,26 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const x = m1.length;
+  const z = m1[0].length;
+  const y = m2[0].length;
+  const productRow = Array.apply(null, new Array(y))/* eslint prefer-spread: "off" */
+    .map(Number.prototype.valueOf, 0);
+  const product = new Array(x);
+  for (let p = 0; p < x; p++) { /* eslint no-plusplus: "off" */
+    product[p] = productRow.slice();
+  }
+
+  for (let i = 0; i < x; i++) { /* eslint no-plusplus: "off" */
+    for (let j = 0; j < y; j++) { /* eslint no-plusplus: "off" */
+      for (let k = 0; k < z; k++) { /* eslint no-plusplus: "off" */
+        product[i][j] += m1[i][k] * m2[k][j];
+      }
+    }
+  }
+  return product;
+  // throw new Error('Not implemented');
 }
 
 
